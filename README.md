@@ -1,100 +1,102 @@
-## **Project Procedure – UC3: Track Unique Bogie IDs**
+
+## **Project Procedure – UC7: Sort Passenger Bogies by Capacity**
 
 ### **1. Continue the Project**
 
-Using the existing Java project and class **TrainConsistManagementApp.java**, extend the application to enforce **uniqueness of bogie IDs**.
+Using the existing Java project and class **TrainConsistManagementApp.java**, extend the system to **sort passenger bogies based on seating capacity** using custom logic.
 
 ---
 
-### **2. Display UC3 Title**
+### **2. Display UC7 Title**
 
-Inside the `main` method, print the heading:
+Inside the `main` method, print:
 
 ```
-==================================
-UC3 - Track Unique Bogie IDs
-==================================
+=====================================
+ UC7 - Sort Bogies by Capacity
+=====================================
 ```
 
-This indicates that the system is now validating uniqueness of bogie identifiers.
+This indicates that sorting functionality is being performed.
 
 ---
 
-### **3. Identify the Drawback of UC2**
+### **3. Create Bogie Class**
 
-In UC2, a **List** was used to store bogies.
+Define a class to represent bogies:
 
-* Lists allow **duplicate values**
-* Example issue:
+```
+static class Bogie {
+    String name;
+    int capacity;
 
-  ```
-  BG101, BG101
-  ```
-* This can lead to:
+    Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+}
+```
 
-  * Invalid train composition
-  * Data inconsistency
-  * Safety risks
+This models real-world passenger bogies with:
+
+* Name
+* Seating capacity
 
 ---
 
-### **4. Introduce Set for Uniqueness**
+### **4. Initialize Bogie List**
 
-To solve this problem:
-
-* Use the **Set interface**
-* Use **HashSet implementation**
+Create a dynamic list to store bogie objects:
 
 ```
-Set<String> bogies = new HashSet<>();
-```
-
-A `HashSet` automatically ensures that all elements are **unique**.
-
----
-
-### **5. Add Bogie IDs (Including Duplicates)**
-
-Insert bogie IDs using the `.add()` method:
-
-```
-bogies.add("BG101");
-bogies.add("BG102");
-bogies.add("BG103");
-bogies.add("BG104");
-bogies.add("BG101"); // Duplicate
-bogies.add("BG102"); // Duplicate
+List<Bogie> bogies = new ArrayList<>();
 ```
 
 ---
 
-### **6. Observe Automatic Deduplication**
+### **5. Add Passenger Bogies**
 
-When duplicates are added:
+Insert bogies with capacities:
 
-* `HashSet` **ignores duplicate entries automatically**
-* No error is thrown
-* Only unique values are stored internally
+```
+bogies.add(new Bogie("Sleeper", 72));
+bogies.add(new Bogie("AC Chair", 60));
+bogies.add(new Bogie("First Class", 40));
+```
 
 ---
 
-### **7. Display Bogie IDs**
-
-Print the set:
+### **6. Display Before Sorting**
 
 ```
-Bogie IDs After Insertion:
-[BG101, BG102, BG103, BG104]
+Before Sorting:
+Sleeper -> 72
+AC Chair -> 60
+First Class -> 40
 ```
-
-(Note: Order may vary because `HashSet` is unordered.)
 
 ---
 
-### **8. Display Informational Note**
+### **7. Apply Comparator for Sorting**
+
+Use `Comparator.comparingInt()` with a lambda expression:
 
 ```
-Duplicates are automatically ignored by HashSet.
+bogies.sort(Comparator.comparingInt(b -> b.capacity));
+```
+
+* Sorts bogies in **ascending order**
+* Uses **lambda expression** for concise logic
+
+---
+
+### **8. Display After Sorting**
+
+```
+After Sorting (by capacity):
+First Class -> 40
+AC Chair -> 60
+Sleeper -> 72
 ```
 
 ---
@@ -102,7 +104,7 @@ Duplicates are automatically ignored by HashSet.
 ### **9. Completion Message**
 
 ```
-UC3 uniqueness validation completed...
+UC7 operations completed successfully...
 ```
 
 ---
@@ -113,51 +115,54 @@ UC3 uniqueness validation completed...
 
 **Flow:**
 
-1. User adds bogie IDs
-2. System inserts them into `HashSet`
-3. Duplicate values are ignored automatically
-4. Unique bogie IDs are displayed
+1. User creates passenger bogie objects
+2. Bogies are stored in a list
+3. System applies Comparator logic
+4. Bogies are sorted by capacity
+5. Sorted list is displayed
+6. Program continues
 
 ---
 
-## **Key Concepts Used in UC3**
+## **Key Concepts Used in UC7**
 
-* **Set Interface** – Collection that does not allow duplicates
-* **HashSet Class** – Implements Set using hashing
-* **add() Method** – Adds elements to the set
-* **Automatic Deduplication** – No manual checking required
-* **Unordered Storage** – Elements are not stored by index
+* **Comparator Interface** – Defines custom sorting logic
+* **Custom Objects (Bogie)** – Represents real-world data
+* **List Collection** – Stores objects dynamically
+* **sort() Method** – Applies sorting logic
+* **Lambda Expressions** – Simplifies comparator implementation
+* **Separation of Data and Logic** – Improves code clarity
 
 ---
 
 ## **Key Requirements**
 
-* Create a `HashSet<String>` for bogie IDs
-* Add duplicate values intentionally
-* Print the final set
-* Verify that duplicates are removed automatically
+* Create a `Bogie` class with name and capacity
+* Create a `List<Bogie>`
+* Add bogies: Sleeper, AC Chair, First Class
+* Use `Comparator.comparingInt()`
+* Sort and display bogies
 
 ---
 
 ## **Key Benefits**
 
-* Enforces **business constraints (unique bogie IDs)**
-* Prevents **data corruption and duplication errors**
-* Demonstrates when to use **Set instead of List**
-* Introduces **real-world validation logic** in railway systems
+* Introduces **object-based data handling**
+* Demonstrates **custom business logic in sorting**
+* Improves **train planning and capacity analysis**
+* Promotes **clean and maintainable code design**
+* Prepares for **advanced collection processing in real-world systems**
 
 ---
 
-## **Outcome of UC3**
+## **Outcome of UC7**
 
 After completing this procedure:
 
-* Only **unique bogie IDs** are stored in the system
-* Duplicate entries are automatically eliminated
-* The train consist becomes **more reliable and error-free**
-* The application demonstrates effective use of **HashSet for uniqueness enforcement**
+* Passenger bogies are sorted based on **capacity**
+* The system uses **custom comparison logic effectively**
+* Code structure reflects **real-world modeling and separation of concerns**
+* The application demonstrates **advanced use of collections and Comparator**
 
 ---
-
-
 
