@@ -13,71 +13,6 @@ Inside the `main` method, print:
 ```
 ==================================
 UC6 - Map Bogie to Capacity (HashMap)
-==================================
-```
-
-This indicates that the system is now handling **bogie attributes using key–value mapping**.
-
----
-
-### **3. Introduce HashMap**
-
-To map bogies with their capacities:
-
-* Use the **Map interface**
-* Use **HashMap implementation**
-
-```
-Map<String, Integer> capacityMap = new HashMap<>();
-```
-
-This structure stores:
-
-* **Key → Bogie Name**
-* **Value → Capacity**
-
----
-
-### **4. Add Bogie-Capacity Mapping**
-
-Insert values using the `.put()` method:
-
-```
-capacityMap.put("First Class", 24);
-capacityMap.put("Cargo", 120);
-capacityMap.put("Sleeper", 72);
-capacityMap.put("AC Chair", 56);
-```
-
----
-
-### **5. Display Heading**
-
-```
-Bogie Capacity Details:
-```
-
----
-
-### **6. Iterate Using entrySet()**
-
-Loop through the map to access both key and value:
-
-```
-for (Map.Entry<String, Integer> entry : capacityMap.entrySet()) {
-    System.out.println(entry.getKey() + " -> " + entry.getValue());
-}
-```
-
----
-
-### **7. Display Output**
-
-```
-First Class -> 24
-Cargo -> 120
-Sleeper -> 72
-AC Chair -> 56
 ```
 
 (Note: Order may vary since HashMap is unordered.)
@@ -115,6 +50,21 @@ UC6 bogie-capacity mapping completed...
 * **Key–Value Association** – Links bogie to its capacity
 * **entrySet() Iteration** – Access both key and value together
 * **Fast Lookup** – Retrieve capacity using bogie name
+1. User adds bogie names
+2. System inserts them into `LinkedHashSet`
+3. Duplicate entries are ignored
+4. Insertion order is preserved
+5. Final formation is displayed
+
+---
+
+## **Key Concepts Used in UC5**
+
+* **Set Interface** – Ensures no duplicate elements
+* **LinkedHashSet Class** – Maintains insertion order
+* **add() Method** – Inserts elements
+* **Automatic Deduplication** – No manual validation required
+* **Order Preservation** – Maintains sequence of insertion
 
 ---
 
@@ -125,6 +75,14 @@ UC6 bogie-capacity mapping completed...
 * Use `put()` for mapping
 * Iterate using `entrySet()`
 * Display bogie and capacity
+* Create a `LinkedHashSet<String>` for train formation
+* Add bogies: Engine, Sleeper, Cargo, Guard
+* Add duplicate value intentionally
+* Print final formation
+* Verify:
+
+  * No duplicates
+  * Order is preserved
 
 ---
 
@@ -151,4 +109,22 @@ After completing this procedure:
 
 
 
+
+* Combines **uniqueness + order preservation**
+* Prevents **duplicate bogie entries**
+* Maintains **realistic train sequence**
+* Demonstrates when to use **LinkedHashSet over HashSet and List**
+
+---
+
+## **Outcome of UC5**
+
+After completing this procedure:
+
+* Train formation maintains **unique bogies only**
+* Original insertion sequence is **retained**
+* Duplicate entries are **automatically eliminated**
+* The application demonstrates effective use of **LinkedHashSet for ordered and unique data management**
+
+---
 
