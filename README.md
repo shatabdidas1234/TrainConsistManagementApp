@@ -1,108 +1,110 @@
-## **Project Procedure – UC3: Track Unique Bogie IDs**
+## **Project Procedure – UC4: Maintain Ordered Bogie Consist**
 
 ### **1. Continue the Project**
 
-Using the existing Java project and class **TrainConsistManagementApp.java**, extend the application to enforce **uniqueness of bogie IDs**.
+Using the existing Java project and class **TrainConsistManagementApp.java**, extend the system to maintain the **physical order of bogies** in a train.
 
 ---
 
-### **2. Display UC3 Title**
+### **2. Display UC4 Title**
 
-Inside the `main` method, print the heading:
+Inside the `main` method, print:
 
 ```
 ==================================
-UC3 - Track Unique Bogie IDs
+UC4 - Maintain Ordered Bogie Consist
 ==================================
 ```
 
-This indicates that the system is now validating uniqueness of bogie identifiers.
+This indicates operations related to maintaining train sequence.
 
 ---
 
-### **3. Identify the Drawback of UC2**
+### **3. Introduce LinkedList**
 
-In UC2, a **List** was used to store bogies.
+To manage ordered bogies efficiently:
 
-* Lists allow **duplicate values**
-* Example issue:
+* Use the **List interface**
+* Use **LinkedList implementation**
 
-  ```
-  BG101, BG101
-  ```
-* This can lead to:
+```
+List<String> trainConsist = new LinkedList<>();
+```
 
-  * Invalid train composition
-  * Data inconsistency
-  * Safety risks
+Unlike ArrayList, LinkedList uses **node connections**, making insertions and deletions efficient.
 
 ---
 
-### **4. Introduce Set for Uniqueness**
+### **4. Add Initial Bogies**
 
-To solve this problem:
-
-* Use the **Set interface**
-* Use **HashSet implementation**
+Add bogies in sequence using `.add()`:
 
 ```
-Set<String> bogies = new HashSet<>();
-```
-
-A `HashSet` automatically ensures that all elements are **unique**.
-
----
-
-### **5. Add Bogie IDs (Including Duplicates)**
-
-Insert bogie IDs using the `.add()` method:
-
-```
-bogies.add("BG101");
-bogies.add("BG102");
-bogies.add("BG103");
-bogies.add("BG104");
-bogies.add("BG101"); // Duplicate
-bogies.add("BG102"); // Duplicate
+trainConsist.add("Engine");
+trainConsist.add("Sleeper");
+trainConsist.add("AC");
+trainConsist.add("Cargo");
+trainConsist.add("Guard");
 ```
 
 ---
 
-### **6. Observe Automatic Deduplication**
+### **5. Display Initial Train Consist**
 
-When duplicates are added:
+```
+Initial Train Consist:
+[Engine, Sleeper, AC, Cargo, Guard]
+```
 
-* `HashSet` **ignores duplicate entries automatically**
-* No error is thrown
-* Only unique values are stored internally
+This represents the initial arrangement of the train.
 
 ---
 
-### **7. Display Bogie IDs**
+### **6. Insert a Bogie in the Middle**
 
-Print the set:
-
-```
-Bogie IDs After Insertion:
-[BG101, BG102, BG103, BG104]
-```
-
-(Note: Order may vary because `HashSet` is unordered.)
-
----
-
-### **8. Display Informational Note**
+Insert **Pantry Car** at position 2 using:
 
 ```
-Duplicates are automatically ignored by HashSet.
+trainConsist.add(2, "Pantry Car");
 ```
 
 ---
 
-### **9. Completion Message**
+### **7. Display Updated Consist**
 
 ```
-UC3 uniqueness validation completed...
+After Inserting 'Pantry Car' at position 2:
+[Engine, Sleeper, Pantry Car, AC, Cargo, Guard]
+```
+
+This demonstrates **mid-list insertion efficiency**.
+
+---
+
+### **8. Remove First and Last Bogies**
+
+Remove bogies from both ends:
+
+```
+trainConsist.remove(0); // Remove Engine
+trainConsist.remove(trainConsist.size() - 1); // Remove Guard
+```
+
+---
+
+### **9. Display Final Consist**
+
+```
+After Removing First and Last Bogie:
+[Sleeper, Pantry Car, AC, Cargo]
+```
+
+---
+
+### **10. Completion Message**
+
+```
+UC4 ordered consist operations completed...
 ```
 
 ---
@@ -113,49 +115,51 @@ UC3 uniqueness validation completed...
 
 **Flow:**
 
-1. User adds bogie IDs
-2. System inserts them into `HashSet`
-3. Duplicate values are ignored automatically
-4. Unique bogie IDs are displayed
+1. User defines bogie sequence
+2. System stores bogies in LinkedList
+3. Bogies are inserted at specific positions
+4. First and last bogies are removed
+5. Final ordered consist is displayed
 
 ---
 
-## **Key Concepts Used in UC3**
+## **Key Concepts Used in UC4**
 
-* **Set Interface** – Collection that does not allow duplicates
-* **HashSet Class** – Implements Set using hashing
-* **add() Method** – Adds elements to the set
-* **Automatic Deduplication** – No manual checking required
-* **Unordered Storage** – Elements are not stored by index
+* **LinkedList** – Doubly linked list implementation
+* **Node Structure Concept** – Each element links to previous and next nodes
+* **add(index, element)** – Insert at a specific position
+* **remove()** – Delete elements from list
+* **Order Preservation** – Maintains real-world train sequence
 
 ---
 
 ## **Key Requirements**
 
-* Create a `HashSet<String>` for bogie IDs
-* Add duplicate values intentionally
-* Print the final set
-* Verify that duplicates are removed automatically
+* Create a `LinkedList<String>` for train consist
+* Add bogies: Engine, Sleeper, AC, Cargo, Guard
+* Insert **Pantry Car** at position 2
+* Remove first and last bogies
+* Display the final ordered train consist
 
 ---
 
 ## **Key Benefits**
 
-* Enforces **business constraints (unique bogie IDs)**
-* Prevents **data corruption and duplication errors**
-* Demonstrates when to use **Set instead of List**
-* Introduces **real-world validation logic** in railway systems
+* Models **real-world train arrangement**
+* Efficient insertion and deletion compared to ArrayList
+* Helps understand **node-based data structures**
+* Demonstrates importance of **order maintenance**
 
 ---
 
-## **Outcome of UC3**
+## **Outcome of UC4**
 
 After completing this procedure:
 
-* Only **unique bogie IDs** are stored in the system
-* Duplicate entries are automatically eliminated
-* The train consist becomes **more reliable and error-free**
-* The application demonstrates effective use of **HashSet for uniqueness enforcement**
+* Train bogies are maintained in a **strict order**
+* Insertions and deletions are handled efficiently
+* The system reflects **real-world train composition behavior**
+* The application demonstrates effective use of **LinkedList for ordered data management**
 
 ---
 
