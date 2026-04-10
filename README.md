@@ -1,108 +1,28 @@
-## **Project Procedure – UC5: Preserve Insertion Order of Bogies**
+## **Project Procedure – UC6: Map Bogie to Capacity (HashMap)**
 
 ### **1. Continue the Project**
 
-Using the existing Java project and class **TrainConsistManagementApp.java**, extend the system to maintain both **uniqueness and insertion order** of bogies.
+Using the existing Java project and class **TrainConsistManagementApp.java**, extend the system to associate each bogie with its **seating or load capacity**.
 
 ---
 
-### **2. Display UC5 Title**
+### **2. Display UC6 Title**
 
 Inside the `main` method, print:
 
 ```
 ==================================
-UC5 - Preserve Insertion Order of Bogies
-==================================
+UC6 - Map Bogie to Capacity (HashMap)
 ```
 
-This indicates that the system now focuses on ordered and unique train formation.
+(Note: Order may vary since HashMap is unordered.)
 
 ---
 
-### **3. Identify the Need**
-
-From previous use cases:
-
-* **HashSet (UC3)** ensures uniqueness but **does not maintain order**
-* **LinkedList (UC4)** maintains order but **allows duplicates**
-
-👉 We need a structure that:
-
-* Prevents duplicates
-* Preserves insertion order
-
----
-
-### **4. Introduce LinkedHashSet**
-
-To achieve both goals:
-
-* Use the **Set interface**
-* Use **LinkedHashSet implementation**
+### **8. Completion Message**
 
 ```
-Set<String> formation = new LinkedHashSet<>();
-```
-
-`LinkedHashSet` combines:
-
-* **Hashing (for uniqueness)**
-* **Linked list (for order preservation)**
-
----
-
-### **5. Add Bogies**
-
-Insert bogies using `.add()`:
-
-```
-formation.add("Engine");
-formation.add("Sleeper");
-formation.add("Cargo");
-formation.add("Guard");
-```
-
----
-
-### **6. Add Duplicate Entry**
-
-Intentionally add a duplicate:
-
-```
-formation.add("Sleeper"); // Duplicate
-```
-
----
-
-### **7. Observe Behavior**
-
-* Duplicate entry is **ignored automatically**
-* Original insertion order is **preserved**
-
----
-
-### **8. Display Final Train Formation**
-
-```
-Final Train Formation:
-[Engine, Sleeper, Cargo, Guard]
-```
-
----
-
-### **9. Display Informational Note**
-
-```
-LinkedHashSet preserves insertion order and removes duplicates automatically.
-```
-
----
-
-### **10. Completion Message**
-
-```
-UC5 formation setup completed...
+UC6 bogie-capacity mapping completed...
 ```
 
 ---
@@ -113,6 +33,23 @@ UC5 formation setup completed...
 
 **Flow:**
 
+1. User creates bogie-capacity mapping
+2. System stores data in `HashMap`
+3. Key–value pairs are inserted using `put()`
+4. System iterates using `entrySet()`
+5. Bogie capacities are displayed
+6. Program continues
+
+---
+
+## **Key Concepts Used in UC6**
+
+* **Map Interface** – Stores key–value relationships
+* **HashMap Class** – Efficient key-based storage using hashing
+* **put() Method** – Inserts mappings
+* **Key–Value Association** – Links bogie to its capacity
+* **entrySet() Iteration** – Access both key and value together
+* **Fast Lookup** – Retrieve capacity using bogie name
 1. User adds bogie names
 2. System inserts them into `LinkedHashSet`
 3. Duplicate entries are ignored
@@ -133,6 +70,11 @@ UC5 formation setup completed...
 
 ## **Key Requirements**
 
+* Create a `HashMap<String, Integer>`
+* Insert bogie capacities (Sleeper, AC Chair, First Class, Cargo)
+* Use `put()` for mapping
+* Iterate using `entrySet()`
+* Display bogie and capacity
 * Create a `LinkedHashSet<String>` for train formation
 * Add bogies: Engine, Sleeper, Cargo, Guard
 * Add duplicate value intentionally
@@ -145,6 +87,28 @@ UC5 formation setup completed...
 ---
 
 ## **Key Benefits**
+
+* Models **real-world attribute mapping**
+* Introduces **key–value data structures**
+* Enables **fast lookup and validation**
+* Builds foundation for **data-driven applications**
+* Prepares for **advanced analytics and planning systems**
+
+---
+
+## **Outcome of UC6**
+
+After completing this procedure:
+
+* Each bogie is successfully mapped to its **capacity**
+* Data is stored in an efficient **key–value structure**
+* The system supports **quick retrieval of bogie details**
+* The application demonstrates effective use of **HashMap for real-world data modeling**
+
+---
+
+
+
 
 * Combines **uniqueness + order preservation**
 * Prevents **duplicate bogie entries**
