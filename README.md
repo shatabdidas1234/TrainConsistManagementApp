@@ -1,108 +1,108 @@
-## **Project Procedure – UC3: Track Unique Bogie IDs**
+## **Project Procedure – UC5: Preserve Insertion Order of Bogies**
 
 ### **1. Continue the Project**
 
-Using the existing Java project and class **TrainConsistManagementApp.java**, extend the application to enforce **uniqueness of bogie IDs**.
+Using the existing Java project and class **TrainConsistManagementApp.java**, extend the system to maintain both **uniqueness and insertion order** of bogies.
 
 ---
 
-### **2. Display UC3 Title**
+### **2. Display UC5 Title**
 
-Inside the `main` method, print the heading:
+Inside the `main` method, print:
 
 ```
 ==================================
-UC3 - Track Unique Bogie IDs
+UC5 - Preserve Insertion Order of Bogies
 ==================================
 ```
 
-This indicates that the system is now validating uniqueness of bogie identifiers.
+This indicates that the system now focuses on ordered and unique train formation.
 
 ---
 
-### **3. Identify the Drawback of UC2**
+### **3. Identify the Need**
 
-In UC2, a **List** was used to store bogies.
+From previous use cases:
 
-* Lists allow **duplicate values**
-* Example issue:
+* **HashSet (UC3)** ensures uniqueness but **does not maintain order**
+* **LinkedList (UC4)** maintains order but **allows duplicates**
 
-  ```
-  BG101, BG101
-  ```
-* This can lead to:
+👉 We need a structure that:
 
-  * Invalid train composition
-  * Data inconsistency
-  * Safety risks
+* Prevents duplicates
+* Preserves insertion order
 
 ---
 
-### **4. Introduce Set for Uniqueness**
+### **4. Introduce LinkedHashSet**
 
-To solve this problem:
+To achieve both goals:
 
 * Use the **Set interface**
-* Use **HashSet implementation**
+* Use **LinkedHashSet implementation**
 
 ```
-Set<String> bogies = new HashSet<>();
+Set<String> formation = new LinkedHashSet<>();
 ```
 
-A `HashSet` automatically ensures that all elements are **unique**.
+`LinkedHashSet` combines:
+
+* **Hashing (for uniqueness)**
+* **Linked list (for order preservation)**
 
 ---
 
-### **5. Add Bogie IDs (Including Duplicates)**
+### **5. Add Bogies**
 
-Insert bogie IDs using the `.add()` method:
-
-```
-bogies.add("BG101");
-bogies.add("BG102");
-bogies.add("BG103");
-bogies.add("BG104");
-bogies.add("BG101"); // Duplicate
-bogies.add("BG102"); // Duplicate
-```
-
----
-
-### **6. Observe Automatic Deduplication**
-
-When duplicates are added:
-
-* `HashSet` **ignores duplicate entries automatically**
-* No error is thrown
-* Only unique values are stored internally
-
----
-
-### **7. Display Bogie IDs**
-
-Print the set:
+Insert bogies using `.add()`:
 
 ```
-Bogie IDs After Insertion:
-[BG101, BG102, BG103, BG104]
-```
-
-(Note: Order may vary because `HashSet` is unordered.)
-
----
-
-### **8. Display Informational Note**
-
-```
-Duplicates are automatically ignored by HashSet.
+formation.add("Engine");
+formation.add("Sleeper");
+formation.add("Cargo");
+formation.add("Guard");
 ```
 
 ---
 
-### **9. Completion Message**
+### **6. Add Duplicate Entry**
+
+Intentionally add a duplicate:
 
 ```
-UC3 uniqueness validation completed...
+formation.add("Sleeper"); // Duplicate
+```
+
+---
+
+### **7. Observe Behavior**
+
+* Duplicate entry is **ignored automatically**
+* Original insertion order is **preserved**
+
+---
+
+### **8. Display Final Train Formation**
+
+```
+Final Train Formation:
+[Engine, Sleeper, Cargo, Guard]
+```
+
+---
+
+### **9. Display Informational Note**
+
+```
+LinkedHashSet preserves insertion order and removes duplicates automatically.
+```
+
+---
+
+### **10. Completion Message**
+
+```
+UC5 formation setup completed...
 ```
 
 ---
@@ -113,51 +113,54 @@ UC3 uniqueness validation completed...
 
 **Flow:**
 
-1. User adds bogie IDs
-2. System inserts them into `HashSet`
-3. Duplicate values are ignored automatically
-4. Unique bogie IDs are displayed
+1. User adds bogie names
+2. System inserts them into `LinkedHashSet`
+3. Duplicate entries are ignored
+4. Insertion order is preserved
+5. Final formation is displayed
 
 ---
 
-## **Key Concepts Used in UC3**
+## **Key Concepts Used in UC5**
 
-* **Set Interface** – Collection that does not allow duplicates
-* **HashSet Class** – Implements Set using hashing
-* **add() Method** – Adds elements to the set
-* **Automatic Deduplication** – No manual checking required
-* **Unordered Storage** – Elements are not stored by index
+* **Set Interface** – Ensures no duplicate elements
+* **LinkedHashSet Class** – Maintains insertion order
+* **add() Method** – Inserts elements
+* **Automatic Deduplication** – No manual validation required
+* **Order Preservation** – Maintains sequence of insertion
 
 ---
 
 ## **Key Requirements**
 
-* Create a `HashSet<String>` for bogie IDs
-* Add duplicate values intentionally
-* Print the final set
-* Verify that duplicates are removed automatically
+* Create a `LinkedHashSet<String>` for train formation
+* Add bogies: Engine, Sleeper, Cargo, Guard
+* Add duplicate value intentionally
+* Print final formation
+* Verify:
+
+  * No duplicates
+  * Order is preserved
 
 ---
 
 ## **Key Benefits**
 
-* Enforces **business constraints (unique bogie IDs)**
-* Prevents **data corruption and duplication errors**
-* Demonstrates when to use **Set instead of List**
-* Introduces **real-world validation logic** in railway systems
+* Combines **uniqueness + order preservation**
+* Prevents **duplicate bogie entries**
+* Maintains **realistic train sequence**
+* Demonstrates when to use **LinkedHashSet over HashSet and List**
 
 ---
 
-## **Outcome of UC3**
+## **Outcome of UC5**
 
 After completing this procedure:
 
-* Only **unique bogie IDs** are stored in the system
-* Duplicate entries are automatically eliminated
-* The train consist becomes **more reliable and error-free**
-* The application demonstrates effective use of **HashSet for uniqueness enforcement**
+* Train formation maintains **unique bogies only**
+* Original insertion sequence is **retained**
+* Duplicate entries are **automatically eliminated**
+* The application demonstrates effective use of **LinkedHashSet for ordered and unique data management**
 
 ---
-
-
 
